@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="lib/grpc-all-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-api-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-auth-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-context-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-core-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-netty-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-okhttp-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-protobuf-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-protobuf-lite-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-stub-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/grpc-testing-1.27.0.jar"/>
+	<classpathentry kind="lib" path="lib/protobuf-java-3.11.4.jar"/>
+	<classpathentry kind="lib" path="lib/guava-27.0.1-jre.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/netty-all-4.1.43.Final.jar"/>
+	<classpathentry kind="lib" path="lib/netty-common-4.1.43.Final.jar"/>
+	<classpathentry kind="lib" path="lib/error_prone_annotations-2.3.4.jar"/>
+	<classpathentry kind="lib" path="lib/jsr305-3.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/perfmark-api-0.21.0.jar"/>
+	<classpathentry kind="lib" path="lib/failureaccess-1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
