@@ -90,21 +90,5 @@ public class WeatherDataGenerator {
                 multiplier = -multiplier;
             }
         }
-
-        public float getMinValue() {
-            return minValue;
-        }
-
-        public float getMaxValue() {
-            return maxValue;
-        }
-
-        public float getMinStep() {
-            return minStep;
-        }
-
-        public float getMaxStep() {
-            return maxStep;
-        }
     }
 }
