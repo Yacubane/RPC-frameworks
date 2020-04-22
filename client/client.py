@@ -1,7 +1,7 @@
 import grpc
 
-import weather_pb2
-import weather_pb2_grpc
+from gen import weather_pb2
+from gen import weather_pb2_grpc
 
 import threading
 import time

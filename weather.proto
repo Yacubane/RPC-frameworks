@@ -5,7 +5,6 @@ package weather;
 option java_package = "sr.grpc.gen";
 option java_outer_classname = "Weather";
 
-
 enum Relation {
   EQUAL = 0;
   MORE_THAN_EQUAL = 1;
