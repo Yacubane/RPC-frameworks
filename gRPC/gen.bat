@@ -1,0 +1,2 @@
+..\tools\protoc.exe -I=. --java_out=server\gen --plugin=protoc-gen-grpc-java=..\tools\protoc-gen-grpc-java.exe --grpc-java_out=server\gen weather.proto
+python -m grpc_tools.protoc -I. --python_out=client\gen --grpc_python_out=client\gen weather.proto
