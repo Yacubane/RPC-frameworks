@@ -18,7 +18,7 @@ public class WeatherDataGenerator {
         addWeatherDataGenerator(queue, "New York",
                 new GeneratorValue(10, 30, 1, 2),
                 new GeneratorValue(10, 100, 5, 10),
-                new GeneratorValue(950, 1050, 10, 20),
+                new GeneratorValue(950, 1050, 5, 10),
                 1000, 2000);
         return queue;
     }
@@ -30,13 +30,10 @@ public class WeatherDataGenerator {
                                          GeneratorValue pressureArg,
                                          int minInterval, int maxInterval) {
 
-
         new Thread(() -> {
             try {
                 WeatherData prevWeatherData = null;
                 while (true) {
-
-
                     temperatureArg.update();
                     humidityArg.update();
                     pressureArg.update();
@@ -47,7 +44,7 @@ public class WeatherDataGenerator {
                             humidityArg.currentValue,
                             pressureArg.currentValue);
 
-                    if(prevWeatherData != null) {
+                    if (prevWeatherData != null) {
                         queue.add(new Pair<>(prevWeatherData, weatherData));
                     }
 
@@ -81,7 +78,7 @@ public class WeatherDataGenerator {
         }
 
         public void update() {
-            currentValue += Math.random() * (maxStep - minStep) * multiplier;
+            currentValue += (Math.random() * (maxStep - minStep) + minStep) * multiplier;
             if (currentValue > maxValue) {
                 currentValue = maxValue;
                 multiplier = -multiplier;
