@@ -1,12 +1,5 @@
-
-namespace cpp tutorial
-namespace d tutorial
-namespace dart tutorial
-namespace java sr.rpc.thrift
-namespace php tutorial
-namespace perl tutorial
-namespace haxe tutorial
-//namespace netcore tutorial
+namespace java sr.thrift.smarthome
+namespace py smarthome
 
 enum SwitchState {
   ON = 1,
@@ -77,7 +70,7 @@ service Gate extends OpenCloseDevice {
     void setOpenPercent(1:double openPercent) throws (1: InvalidArguments ex)
 }
 
-service SurveillanceCamera {
+service SurveillanceCamera extends Device {
     bool isRecording(),
     void startRecording() throws (1: InvalidOperation ex),
     void stopRecording() throws (1: InvalidOperation ex)

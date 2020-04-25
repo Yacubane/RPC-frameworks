@@ -11,6 +11,7 @@ from thrift.protocol.TProtocol import TProtocolException
 from thrift.TRecursive import fix_spec
 
 import sys
+import smarthome.Device
 import logging
 from .ttypes import *
 from thrift.Thrift import TProcessor
@@ -18,7 +19,7 @@ from thrift.transport import TTransport
 all_structs = []
 
 
-class Iface(object):
+class Iface(smarthome.Device.Iface):
     def isRecording(self):
         pass
 
@@ -29,12 +30,9 @@ class Iface(object):
         pass
 
 
-class Client(Iface):
+class Client(smarthome.Device.Client, Iface):
     def __init__(self, iprot, oprot=None):
-        self._iprot = self._oprot = iprot
-        if oprot is not None:
-            self._oprot = oprot
-        self._seqid = 0
+        smarthome.Device.Client.__init__(self, iprot, oprot)
 
     def isRecording(self):
         self.send_isRecording()
@@ -115,10 +113,9 @@ class Client(Iface):
         return
 
 
-class Processor(Iface, TProcessor):
+class Processor(smarthome.Device.Processor, Iface, TProcessor):
     def __init__(self, handler):
-        self._handler = handler
-        self._processMap = {}
+        smarthome.Device.Processor.__init__(self, handler)
         self._processMap["isRecording"] = Processor.process_isRecording
         self._processMap["startRecording"] = Processor.process_startRecording
         self._processMap["stopRecording"] = Processor.process_stopRecording

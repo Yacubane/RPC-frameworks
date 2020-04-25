@@ -33,6 +33,8 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
     print('  bool isRecording()')
     print('  void startRecording()')
     print('  void stopRecording()')
+    print('  string getId()')
+    print('  string getName()')
     print('')
     sys.exit(0)
 
@@ -165,6 +167,18 @@ elif cmd == 'stopRecording':
         print('stopRecording requires 0 args')
         sys.exit(1)
     pp.pprint(client.stopRecording())
+
+elif cmd == 'getId':
+    if len(args) != 0:
+        print('getId requires 0 args')
+        sys.exit(1)
+    pp.pprint(client.getId())
+
+elif cmd == 'getName':
+    if len(args) != 0:
+        print('getName requires 0 args')
+        sys.exit(1)
+    pp.pprint(client.getName())
 
 else:
     print('Unrecognized method %s' % cmd)
