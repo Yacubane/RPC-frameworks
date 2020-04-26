@@ -27,14 +27,17 @@ public class SmarthomeServer {
         builder.addDevice(new SingleSensorDeviceHandler(
                 "4", "thermometer", 22));
 
+        builder.addDevice(new SingleSensorDeviceHandler(
+                "5", "thermometer-outside", 9));
+
         builder.addDevice(new ThermostatHandler(
-                "5", "thermostat", 8));
+                "6", "thermostat", 8));
 
         builder.addDevice(new PTZSurveillanceCameraHandler(
-                "6", "camera",
+                "7", "camera",
                 new PTZSurveillanceCameraRestrictions(0, 180, 0, 180, 1, 3)));
 
-        builder.addDevice(new CustomDeviceHandler("7", "music-player", List.of("play")) {
+        builder.addDevice(new CustomDeviceHandler("8", "music-player", List.of("play")) {
             @Override
             public void init() {
                 setValue("currentMusic", "Taco Hemingway - Następna Stacja");

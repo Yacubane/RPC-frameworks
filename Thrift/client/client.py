@@ -30,6 +30,7 @@ light = Light.Client(get_protocol(get_device_id_by_name('light')))
 gate = Gate.Client(get_protocol(get_device_id_by_name('gate')))
 rgblight = RGBLight.Client(get_protocol(get_device_id_by_name('rgblight')))
 thermometer = SingleSensorDevice.Client(get_protocol(get_device_id_by_name('thermometer')))
+thermometer2 = SingleSensorDevice.Client(get_protocol(get_device_id_by_name('thermometer-outside')))
 thermostat = Thermostat.Client(get_protocol(get_device_id_by_name('thermostat')))
 camera = PTZSurveillanceCamera.Client(get_protocol(get_device_id_by_name('camera')))
 musicPlayer = CustomDevice.Client(get_protocol(get_device_id_by_name('music-player')))
@@ -39,7 +40,7 @@ def print_help():
           "\thelp, list, light on, light off, light,\n"
           "\tgate open, gate close, gate, gate set percent <arg>, gate percent,\n"
           "\trgb on, rgb off, rgb, rgb set color <arg>, rgb color,\n"
-          "\ttemp, thermostat, thermostat set temp <arg>,\n"
+          "\ttemp, tempout, thermostat, thermostat set temp <arg>,\n"
           "\tcamera pan, camera tilt, camera zoom, camera set pan <arg>, camera set tilt <arg>, camera set zoom <arg>,\n"
           "\tcamera start recording, camera stop recording, camera recording,\n"
           "\tmusic keys, music operations, music get <key>, music call <op> <args>")
@@ -78,6 +79,8 @@ def execute_user_command(command):
         print(rgblight.getColor())
     elif command == 'temp':
         print(thermometer.getValue())
+    elif command == 'tempout':
+        print(thermometer2.getValue())
     elif command == 'thermostat':
         print(thermostat.getTemperature())
     elif command.startswith('thermostat set temp'):
