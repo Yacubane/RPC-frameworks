@@ -3,14 +3,14 @@ import glob
 sys.path.append('gen-py')
 
 from smarthome import *
-from smarthome.ttypes import InvalidArguments
-from smarthome.ttypes import InvalidOperation
+from smarthome.ttypes import *
 
 from thrift import Thrift
 from thrift.transport import TSocket
 from thrift.transport import TTransport
 from thrift.protocol import TBinaryProtocol
 from thrift.protocol import TMultiplexedProtocol
+from thrift.transport.TTransport import TTransportException
 
 transport = TSocket.TSocket('localhost', 9090)
 
@@ -34,8 +34,20 @@ thermostat = Thermostat.Client(get_protocol(get_device_id_by_name('thermostat'))
 camera = PTZSurveillanceCamera.Client(get_protocol(get_device_id_by_name('camera')))
 musicPlayer = CustomDevice.Client(get_protocol(get_device_id_by_name('music-player')))
 
+def print_help():
+    print("List of available commands:\n"
+          "\thelp, list, light on, light off, light,\n"
+          "\tgate open, gate close, gate, gate set percent <arg>, gate percent,\n"
+          "\trgb on, rgb off, rgb, rgb set color <arg>, rgb color,\n"
+          "\ttemp, thermostat, thermostat set temp <arg>,\n"
+          "\tcamera pan, camera tilt, camera zoom, camera set pan <arg>, camera set tilt <arg>, camera set zoom <arg>,\n"
+          "\tcamera start recording, camera stop recording, camera recording,\n"
+          "\tmusic keys, music operations, music get <key>, music call <op> <args>")
+
 def execute_user_command(command):
-    if command == 'list':
+    if command == 'help':
+        print_help()
+    elif command == 'list':
         for device in devices:
             print(f' * {device}')
     elif command == 'light on':
@@ -43,13 +55,13 @@ def execute_user_command(command):
     elif command == 'light off':
         light.turnOff()  
     elif command == 'light':
-        print(light.getState())
+        print(SwitchState._VALUES_TO_NAMES[light.getState()])
     elif command == 'gate open':
         gate.open()
     elif command == 'gate close':
         gate.close()  
     elif command == 'gate':
-        print(gate.getState())
+        print(OpenCloseState._VALUES_TO_NAMES[gate.getState()])
     elif command.startswith('gate set percent'):
         gate.setOpenPercent(float(command.split()[3]))
     elif command == 'gate percent':
@@ -59,7 +71,7 @@ def execute_user_command(command):
     elif command == 'rgb off':
         rgblight.turnOff()  
     elif command == 'rgb':
-        print(rgblight.getState())
+        print(SwitchState._VALUES_TO_NAMES[rgblight.getState()])
     elif command.startswith('rgb set color'):
         rgblight.setColor(command.split()[3])
     elif command == 'rgb color':
@@ -79,15 +91,15 @@ def execute_user_command(command):
     elif command == "camera recording":
         print(camera.isRecording()) 
     elif command.startswith("camera set pan"):
-        print(camera.setPan(float(command.split()[3])))
+        camera.setPan(float(command.split()[3]))
     elif command.startswith("camera set tilt"):
-        print(camera.setTilt(float(command.split()[3])))
+        camera.setTilt(float(command.split()[3]))
     elif command.startswith("camera set zoom"):
-        print(camera.setZoom(float(command.split()[3]))) 
+        camera.setZoom(float(command.split()[3])) 
     elif command == "camera start recording":
-        print(camera.startRecording()) 
+        camera.startRecording()
     elif command == "camera stop recording":
-        print(camera.stopRecording()) 
+        camera.stopRecording()
     elif command.startswith('music keys'):
         print(musicPlayer.getAvailableKeys())
     elif command.startswith('music operations'):
@@ -99,6 +111,7 @@ def execute_user_command(command):
     else:
         return False
     return True
+
 
 while True:
     print('->', end='')
@@ -112,6 +125,9 @@ while True:
         print(f'Invalid argument: {e.reason}')
     except InvalidOperation as e:
         print(f'Invalid operation: {e.why}')
+    except TTransportException:
+        print('Network error')
+        break
     except:
-        print("Unknown error")
+        print('Unknown error')
 
