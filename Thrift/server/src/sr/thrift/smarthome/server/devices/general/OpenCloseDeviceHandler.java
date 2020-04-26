@@ -19,11 +19,13 @@ public class OpenCloseDeviceHandler extends DeviceHandler implements OpenCloseDe
 
     @Override
     public OpenCloseState getState() throws TException {
+        System.out.println("OpenCloseState::getState");
         return state.get();
     }
 
     @Override
     public void open() throws InvalidOperation, TException {
+        System.out.println("OpenCloseState::open");
         if (state.get() == OpenCloseState.OPEN) {
             throw new InvalidOperation(1, "Device is already open");
         }
@@ -32,6 +34,7 @@ public class OpenCloseDeviceHandler extends DeviceHandler implements OpenCloseDe
 
     @Override
     public void close() throws InvalidOperation, TException {
+        System.out.println("OpenCloseState::close");
         if (state.get() == OpenCloseState.CLOSE) {
             throw new InvalidOperation(1, "Device is already closed");
         }

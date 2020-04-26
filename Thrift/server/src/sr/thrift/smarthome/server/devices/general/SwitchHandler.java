@@ -18,11 +18,13 @@ public class SwitchHandler extends DeviceHandler implements Switch.Iface {
 
     @Override
     public SwitchState getState() throws TException {
+        System.out.println("SwitchHandler::getState");
         return currentState.get();
     }
 
     @Override
     public void turnOn() throws InvalidOperation, TException {
+        System.out.println("SwitchHandler::turnOn");
         if (currentState.get() == SwitchState.ON)
             throw new InvalidOperation(0, "Device is already turned on");
         currentState.set(SwitchState.ON);
@@ -30,6 +32,7 @@ public class SwitchHandler extends DeviceHandler implements Switch.Iface {
 
     @Override
     public void turnOff() throws InvalidOperation, TException {
+        System.out.println("SwitchHandler::turnOff");
         if (currentState.get() == SwitchState.OFF)
             throw new InvalidOperation(0, "Device is already turned off");
         currentState.set(SwitchState.OFF);

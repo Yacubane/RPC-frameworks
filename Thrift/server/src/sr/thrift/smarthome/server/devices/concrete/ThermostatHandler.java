@@ -20,11 +20,13 @@ public class ThermostatHandler extends DeviceHandler implements Thermostat.Iface
 
     @Override
     public double getTemperature() throws TException {
+        System.out.println("ThermostatHandler::getTemperature");
         return currentTemperature.get();
     }
 
     @Override
     public void setTemperature(double temperature) throws InvalidArguments, TException {
+        System.out.println("ThermostatHandler::setTemperature");
         this.desiredTemperature.set(temperature);
         this.currentTemperature.set(temperature);
     }

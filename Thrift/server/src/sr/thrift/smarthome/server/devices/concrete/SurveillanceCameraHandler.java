@@ -17,11 +17,13 @@ public class SurveillanceCameraHandler extends DeviceHandler implements Surveill
 
     @Override
     public boolean isRecording() throws TException {
+        System.out.println("SurveillanceCameraHandler::isRecording");
         return recording.get();
     }
 
     @Override
     public void startRecording() throws InvalidOperation, TException {
+        System.out.println("SurveillanceCameraHandler::startRecording");
         if (recording.get()) {
             throw new InvalidOperation(0, "Device is already recording");
         }
@@ -30,6 +32,7 @@ public class SurveillanceCameraHandler extends DeviceHandler implements Surveill
 
     @Override
     public void stopRecording() throws InvalidOperation, TException {
+        System.out.println("SurveillanceCameraHandler::stopRecording");
         if (!recording.get()) {
             throw new InvalidOperation(0, "Device isn't recording");
         }

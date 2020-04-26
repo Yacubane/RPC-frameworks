@@ -21,6 +21,7 @@ public class MultipleSensorDeviceHandler extends DeviceHandler implements Multip
 
     @Override
     public double getValue(String field) throws InvalidArguments, TException {
+        System.out.println("MultipleSensorDeviceHandler::getValue");
         if (!values.containsKey(field)) {
             throw new InvalidArguments(1, "This device doesn't have this key");
         }
@@ -29,6 +30,7 @@ public class MultipleSensorDeviceHandler extends DeviceHandler implements Multip
 
     @Override
     public Set<String> getAvailableKeys() throws TException {
+        System.out.println("MultipleSensorDeviceHandler::getAvailableKeys");
         return values.keySet();
     }
 

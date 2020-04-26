@@ -22,6 +22,7 @@ public class LightHandler extends SwitchHandler implements Light.Iface {
 
     @Override
     public void setBrightness(double brightness) throws InvalidArguments, TException {
+        System.out.println("LightHandler::setBrightness");
         if (brightness > maxBrightness || brightness < minBrightness) {
             throw new InvalidArguments(1, "Brightness param must be bettwen "
                     + minBrightness + " and " + maxBrightness);
@@ -31,6 +32,7 @@ public class LightHandler extends SwitchHandler implements Light.Iface {
 
     @Override
     public double getBrightness() throws TException {
+        System.out.println("LightHandler::getBrightness");
         return brightness.get();
     }
 

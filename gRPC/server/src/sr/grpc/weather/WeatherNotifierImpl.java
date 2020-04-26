@@ -77,6 +77,7 @@ public class WeatherNotifierImpl extends WeatherNotifierGrpc.WeatherNotifierImpl
                 for (Client client : observers) {
                     if (conditionFulfilled(client, currWeather)) {
                         if (!conditionFulfilled(client, prevWeather) || client.justConnected) {
+                            System.out.println("Sending update to client");
                             client.responseObserver.onNext(prepareMessage(client, currWeather));
                             client.justConnected = false;
                         }

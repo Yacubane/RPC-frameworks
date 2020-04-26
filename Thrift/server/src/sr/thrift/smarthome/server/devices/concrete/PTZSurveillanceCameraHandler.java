@@ -24,21 +24,25 @@ public class PTZSurveillanceCameraHandler extends SurveillanceCameraHandler impl
 
     @Override
     public double getPan() throws TException {
+        System.out.println("PTZSurveillanceCameraHandler::getPan");
         return pan.get();
     }
 
     @Override
     public double getTilt() throws TException {
+        System.out.println("PTZSurveillanceCameraHandler::getTilt");
         return tilt.get();
     }
 
     @Override
     public double getZoom() throws TException {
+        System.out.println("PTZSurveillanceCameraHandler::getZoom");
         return zoom.get();
     }
 
     @Override
     public void setPan(double pan) throws InvalidArguments, TException {
+        System.out.println("PTZSurveillanceCameraHandler::setPan");
         if (pan < restrictions.minPan || pan > restrictions.maxPan) {
             throw new InvalidArguments(1, "Pan of camera must be between " +
                     restrictions.minPan + " and " + restrictions.maxPan);
@@ -48,6 +52,7 @@ public class PTZSurveillanceCameraHandler extends SurveillanceCameraHandler impl
 
     @Override
     public void setTilt(double tilt) throws InvalidArguments, TException {
+        System.out.println("PTZSurveillanceCameraHandler::setTilt");
         if (tilt < restrictions.minTilt || tilt > restrictions.maxTilt) {
             throw new InvalidArguments(1, "Tilt of camera must be between " +
                     restrictions.minTilt + " and " + restrictions.maxTilt);
@@ -57,6 +62,7 @@ public class PTZSurveillanceCameraHandler extends SurveillanceCameraHandler impl
 
     @Override
     public void setZoom(double zoom) throws InvalidArguments, TException {
+        System.out.println("PTZSurveillanceCameraHandler::setZoom");
         if (zoom < restrictions.minZoom || zoom > restrictions.maxZoom) {
             throw new InvalidArguments(1, "Zoom of camera must be between " +
                     restrictions.minZoom + " and " + restrictions.maxZoom);

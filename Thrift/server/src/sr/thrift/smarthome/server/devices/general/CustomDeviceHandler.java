@@ -29,6 +29,7 @@ public abstract class CustomDeviceHandler extends DeviceHandler implements Custo
 
     @Override
     public String getValue(String field) throws InvalidArguments, TException {
+        System.out.println("CustomDeviceHandler::getValue");
         if (!values.containsKey(field)) {
             throw new InvalidArguments(1, "This device doesn't support value with key " + field);
         }
@@ -37,6 +38,7 @@ public abstract class CustomDeviceHandler extends DeviceHandler implements Custo
 
     @Override
     public Set<String> getAvailableKeys() throws TException {
+        System.out.println("CustomDeviceHandler::getAvailableKeys");
         return values.keySet();
     }
 
@@ -48,6 +50,7 @@ public abstract class CustomDeviceHandler extends DeviceHandler implements Custo
 
     @Override
     public void call(String operation, List<String> arguments) throws InvalidArguments, InvalidOperation, TException {
+        System.out.println("CustomDeviceHandler::call");
         if (!operationNames.contains(operation)) {
             throw new InvalidOperation(1, "This device doesn't support this operation");
         }

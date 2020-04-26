@@ -17,6 +17,7 @@ public class SingleSensorDeviceHandler extends DeviceHandler implements SingleSe
 
     @Override
     public double getValue() throws TException {
+        System.out.println("SingleSensorDeviceHandler::getValue");
         return value.get();
     }
 

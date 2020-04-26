@@ -29,6 +29,7 @@ public class DevicesHandler implements Devices.Iface {
 
     @Override
     public List<DeviceInfo> getDeviceInfos() throws TException {
+        System.out.println("getDeviceInfos");
         return devices;
     }
 }

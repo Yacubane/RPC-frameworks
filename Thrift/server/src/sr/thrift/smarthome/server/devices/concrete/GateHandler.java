@@ -19,11 +19,13 @@ public class GateHandler extends OpenCloseDeviceHandler implements Gate.Iface {
 
     @Override
     public double getOpenPercent() throws TException {
+        System.out.println("GateHandler::getOpenPercent");
         return openPercent.get();
     }
 
     @Override
     public void setOpenPercent(double openPercent) throws InvalidArguments, TException {
+        System.out.println("GateHandler::setOpenPercent");
         if (openPercent < 0.0 || openPercent > 1.0) {
             throw new InvalidArguments(1, "Open percent must be between 0 and 1");
         }

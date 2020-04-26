@@ -21,6 +21,7 @@ public class RGBLightHandler extends LightHandler implements RGBLight.Iface {
 
     @Override
     public void setColor(String hex) throws InvalidArguments, TException {
+        System.out.println("RGBLightHandler::setColor");
         Matcher matcher = pattern.matcher(hex);
         if (!matcher.matches()) {
             throw new InvalidArguments(1, "This isn't proper HEX code of color");
@@ -30,6 +31,7 @@ public class RGBLightHandler extends LightHandler implements RGBLight.Iface {
 
     @Override
     public String getColor() {
+        System.out.println("RGBLightHandler::getColor");
         return color;
     }
 
